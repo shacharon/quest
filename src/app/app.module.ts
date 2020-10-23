@@ -8,11 +8,13 @@ import { WorkerService } from './services/worker.service';
  
 import { HttpClientModule } from '@angular/common/http';
 import { HoverRowDirective } from './directive/hover-row.directive';
+import { DurationPipe } from './pipes/duration.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     WorkerDetailsComponent,
-    HoverRowDirective
+    HoverRowDirective,
+    DurationPipe
   ],
   imports: [
     BrowserModule,

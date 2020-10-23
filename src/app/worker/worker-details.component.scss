@@ -1,3 +1,4 @@
+
 .container {
     display: flex;
     max-width:70%;
@@ -46,9 +47,11 @@
 .title {
     font-weight: bold;
     font-size: 1rem;
+    width: 140px;
 }
 .line-hover {
     background-color: #efefef;
+    cursor: pointer;
 }
 .table-header {
     margin-top: 20px;
@@ -65,4 +68,15 @@
     display: flex;
     align-content: space-between;
     cursor: none;
+}
+.colum-wrapper {
+    border: 1px solid black;
+}
+.table-heading {
+    padding: 20px;
+    height: 50vh;
+}
+.title + div
+{
+    width: 90px;
 }

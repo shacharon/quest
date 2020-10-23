@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    <div style="border: 2px solid black;height: 50vh">
+    <div class="colum-wrapper">
         <div class="workers-header">
             Workers
         </div>
@@ -13,8 +13,7 @@
             <div class="heading title" (click)="showFlights(worker.id,true)">{{worker.name}}</div>
         </div>
     </div>
-    <div style="padding: 20px;border: 1px solid black;">
-
+    <div class="colum-wrapper table-heading">
         <div>
             <div class="row table-header">
                 <div class="col header-style">Flight Number</div>
@@ -35,26 +34,26 @@
         </div>
 
     </div>
-    <div style="padding: 20px;padding-top:40px;border: 1px solid black;">
+    <div class="colum-wrapper table-heading">
 
         <div *ngIf="flight | async as flightDetails; else loading">
             <div class="details header-style heading">
-                <div style="width: 130px;" class="title">Plane number</div>
+                <div class="title">Plane number</div>
                 <div>{{flightDetails.plane}}</div>
             </div>
             <div class="details header-style heading">
-                <div style="width: 130px;" class="title">Duration</div>
-                <div>{{flightDetails.duration}}</div>
+                <div class="title">Duration</div>
+                <div>{{flightDetails.duration | duration}}</div>
             </div>
             <div class="details header-style heading">
-                <div style="width: 130px;" class="title">Origin gate</div>
+                <div class="title">Origin gate</div>
                 <div>{{flightDetails.from_gate}}</div>
             </div>
             <div class="details header-style heading">
-                <div style="width: 130px;" class="title">Destination Gate</div>
+                <div class="title">Destination Gate</div>
                 <div>{{flightDetails.to_gate}}</div>
             </div>
-            
+
         </div>
         <ng-template #loading>
             <div>Flight details</div>

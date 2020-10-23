@@ -19,9 +19,11 @@ export class WorkerDetailsComponent implements OnInit {
 
   private currentWorkerId: number;
   private currentFlightId: string;
+  readonly duration: number = 60000;
   constructor(private workerService: WorkerService) { }
 
   ngOnInit() {
+    
     // get all workers details
     this.workerService.getWorkerDetails()
       .pipe(
@@ -36,7 +38,7 @@ export class WorkerDetailsComponent implements OnInit {
       });
 
     // set interval every 60 seconds
-    interval(4000).subscribe(x => {
+    interval(this.duration).subscribe(x => {
       this.workerService.getWorkerFlightsDetails(this.currentWorkerId).subscribe(flights => {
         this.flight.next(flights.find(res => res.num === this.currentFlightId));
       });
