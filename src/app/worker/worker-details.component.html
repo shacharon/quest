@@ -1,0 +1,47 @@
+<div class="container">
+    <div>
+        <div style="height: 40px;">
+            top
+        </div>
+        <div *ngFor="let worker of workers">
+            <div class="worker" (click)="showFlights(worker.id,true)">{{worker.name}}</div>
+        </div>
+    </div>
+    <div>
+        <div style="height: 30px;">
+            top
+        </div>
+        <div class="row">
+            <div class="col">Flight Number</div>
+            <div class="col">Origin</div>
+            <div class="col">Origin Date</div>
+            <div class="col">Destination</div>
+            <div class="col">Destination Date</div>
+        </div>
+            <div *ngFor="let flight of flights" >
+                <div class="row">
+                    <div class="col" (click)="showFlightInformation(flight.num)">{{flight.num}}</div>
+                    <div class="col">{{flight.from}}</div>
+                    <div class="col">{{flight.from_date}}</div>
+                    <div class="col">{{flight.to}}</div>
+                    <div class="col">{{flight.to_date}}</div>
+                </div>
+            </div>
+       
+    </div>
+    <div>
+        <div style="height: 40px;">
+
+        </div>
+        <div *ngIf="flight | async as flightDetails; else loading">
+            <div>{{flightDetails.plane}}</div>
+            <div>{{flightDetails.duration}}</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <ng-template #loading>
+            <div>Flight details</div>
+        </ng-template>
+    </div>
+
+</div>
