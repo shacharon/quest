@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HoverRowDirective } from './directive/hover-row.directive';
 import { DurationPipe } from './pipes/duration.pipe';
 import { EmployeeDetailsComponent } from './flights/employee/employee-details.component';
+import { FlightsDetailComponent } from './flights/flights-detail/flights-detail.component';
  
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeDetailsComponent,
     HoverRowDirective,
-    DurationPipe
+    DurationPipe,
+    FlightsDetailComponent,
   ],
   imports: [
     BrowserModule,

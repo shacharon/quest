@@ -1,0 +1,16 @@
+.line-hover {
+    background-color: #efefef;
+    cursor: pointer;
+}
+.row {
+    display: table-row;
+    width: auto;
+    clear: both;
+}
+.col {
+    float: left;
+    display: table-column;
+    width: 160px;
+    line-height: 50px;
+    
+}

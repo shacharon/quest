@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { from, interval, Observable, of, Subject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { from, interval, Observable, of, Subject, Subscription } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { WorkerService } from '../../services/worker.service';
 import { iFlightDetail, iWorker } from './../models';
@@ -10,7 +10,7 @@ import { iFlightDetail, iWorker } from './../models';
   styleUrls: ['./employee-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeDetailsComponent implements OnInit {
+export class EmployeeDetailsComponent implements OnInit, OnDestroy {
   workers: iWorker[];
   flights: iFlightDetail[];
 
@@ -18,49 +18,63 @@ export class EmployeeDetailsComponent implements OnInit {
 
   private currentWorkerId: number;
   private currentFlightId: string;
-  readonly duration: number = 2000;
+
+  employees$: Subscription
+  flightDetailsListener$: Subscription
+
+  readonly duration: number = 60000;
   constructor(private workerService: WorkerService) { }
 
   ngOnInit() {
-    
+
     // get all workers details
-    this.workerService.getWorkerDetails()
+    this.employees$ = this.workerService.getWorkerDetails()
       .pipe(
-     
         catchError(err => {
           console.log(err);
           return of([]);
         }))
       .subscribe(workers => {
-        this.workers = workers;
-        this.showFlights(workers[0].id);
+        if (workers) {
+          this.workers = workers;
+          this.getEmployeeFlights(workers[0].id);
+        }
       });
 
     // set interval every 60 seconds
-    interval(this.duration).subscribe(x => {
+    this.flightDetailsListener$ = interval(this.duration).subscribe(x => {
       this.workerService.getWorkerFlightsDetails(this.currentWorkerId).subscribe(flights => {
-        this.flight.next(flights.find(res => res.num === this.currentFlightId));
+        if (flights)
+          this.flight.next(flights.find(res => res.num === this.currentFlightId));
       });
     });
 
   }
 
-  // get workers all flights details
-  showFlights(id) {
+  // get employee all flights details
+  getEmployeeFlights(id) {
     this.currentWorkerId = id;
+    // reset current flight
     this.currentFlightId = null;
     this.workerService.getWorkerFlightsDetails(id).subscribe(res => {
-      this.flights = res;
-      // check for null 
-      if (res.length > 0)
+      if (res) {
+        this.flights = res;
         this.showFlightInformation(res[0].num);
+      }
     });
   }
 
-  // get specif flight information
+  // get specific flight information
   showFlightInformation(flightId) {
     this.currentFlightId = flightId;
-    this.flight.next(this.flights.find(res => res.num === flightId));
+    const flight = this.flights.find(res => res.num === flightId);
+    if (flight)
+      this.flight.next(flight);
+  }
+
+  ngOnDestroy(): void {
+    if (this.flightDetailsListener$) this.flightDetailsListener$.unsubscribe();
+    if (this.employees$) this.employees$.unsubscribe();
   }
 
 }

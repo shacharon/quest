@@ -3,7 +3,7 @@ import { Observable, Subject, throwError } from 'rxjs';
  
 import { catchError, debounceTime, map } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
-import { iFlightDetail, iWorker } from '../flights/models';
+import { iFlightDetail, iHttpErrorHandler, iWorker } from '../flights/models';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class WorkerService {
   getWorkerDetails(): Observable<iWorker[]> {
     return this.http.get<iWorker[]>(this.url)
       .pipe(map(response => response)
-        , catchError((err: HttpErrorHandler) => {
+        , catchError((err: iHttpErrorHandler) => {
           err.friendlyMessage = "error in worker service";
           return throwError(err);
         }));
@@ -27,16 +27,9 @@ export class WorkerService {
   getWorkerFlightsDetails(flightId: number): Observable<iFlightDetail[]> {
     return this.http.get<iFlightDetail[]>(this.url + flightId)
       .pipe(map(response => response)
-        , catchError((err: HttpErrorHandler) => {
+        , catchError((err: iHttpErrorHandler) => {
           err.friendlyMessage = "error in flight service";
           return throwError(err);
         }));
   }
-}
-
-export class HttpErrorHandler {
-  originalError?: any;
-  errorNumber: number;
-  message: string;
-  friendlyMessage: string;
 }

@@ -10,7 +10,7 @@
             Workers
         </div>
         <div *ngFor="let worker of workers" appHoverRow="line-hover">
-            <div class="heading title" (click)="showFlights(worker.id,true)">{{worker.name}}</div>
+            <div class="heading title" (click)="getEmployeeFlights(worker.id)">{{worker.name}}</div>
         </div>
     </div>
     <div class="colum-wrapper table-heading">
@@ -24,13 +24,7 @@
             </div>
         </div>
         <div *ngFor="let flight of flights">
-            <div class="row" appHoverRow="line-hover">
-                <div class="col" (click)="showFlightInformation(flight.num)">{{flight.num}}</div>
-                <div class="col">{{flight.from}}</div>
-                <div class="col">{{flight.from_date}}</div>
-                <div class="col">{{flight.to}}</div>
-                <div class="col">{{flight.to_date}}</div>
-            </div>
+           <app-flights-detail [flight]="flight" (showFlightId)="showFlightInformation($event)"></app-flights-detail>
         </div>
 
     </div>

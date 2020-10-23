@@ -15,3 +15,11 @@ export interface iFlightDetail {
     to_gate :number;
 
 }
+
+export class iHttpErrorHandler {
+    originalError?: any;
+    errorNumber: number;
+    message: string;
+    friendlyMessage: string;
+  }
+  
