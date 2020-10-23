@@ -1,7 +1,6 @@
 .container {
     display: flex;
-    justify-content: space-between;
-    max-width:54%;
+    max-width:70%;
     margin: 0 auto;
 }
 
@@ -36,15 +35,34 @@
     float: left;
     display: table-column;
     width: 160px;
-    background-color: #ccc;
+    line-height: 50px;
+    
 }
-.worker {
-    font-size: 1rem;
-    font-weight: bold;
+.heading {
     margin-left: 10px;
-    margin-top: 4px;
+    line-height: 30px;
     cursor: pointer;
 }
-.worker-hover {
-    background-color: lightslategrey;
+.title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.line-hover {
+    background-color: #efefef;
+}
+.table-header {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.header-style
+{
+    border-top:1px solid lightslategray;
+    border-bottom:1px solid lightslategray;
+}
+.details 
+{
+    display: flex;
+    align-content: space-between;
+    cursor: none;
 }
