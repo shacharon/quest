@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
-import { iFlightDetail, iWorker } from '../worker/models';
+ 
 import { catchError, debounceTime, map } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
+import { iFlightDetail, iWorker } from '../flights/models';
 
 @Injectable({
   providedIn: 'root'

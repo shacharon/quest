@@ -35,7 +35,6 @@
 
     </div>
     <div class="colum-wrapper table-heading">
-
         <div *ngIf="flight | async as flightDetails; else loading">
             <div class="details header-style heading">
                 <div class="title">Plane number</div>
@@ -53,11 +52,10 @@
                 <div class="title">Destination Gate</div>
                 <div>{{flightDetails.to_gate}}</div>
             </div>
-
         </div>
-        <ng-template #loading>
-            <div>Flight details</div>
-        </ng-template>
     </div>
-
 </div>
+
+<ng-template #loading>
+    <div>Flight details</div>
+</ng-template>

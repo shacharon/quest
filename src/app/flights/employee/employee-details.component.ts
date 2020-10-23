@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { from, interval, Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { WorkerService } from '../services/worker.service';
-import { flightsDetail, workers } from './mockData';
-import { iFlightDetail, iWorker } from './models';
+import { WorkerService } from '../../services/worker.service';
+import { iFlightDetail, iWorker } from './../models';
 
 @Component({
   selector: 'app-worker-details',
-  templateUrl: './worker-details.component.html',
-  styleUrls: ['./worker-details.component.scss'],
-  //changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './employee-details.component.html',
+  styleUrls: ['./employee-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WorkerDetailsComponent implements OnInit {
+export class EmployeeDetailsComponent implements OnInit {
   workers: iWorker[];
   flights: iFlightDetail[];
 
@@ -19,7 +18,7 @@ export class WorkerDetailsComponent implements OnInit {
 
   private currentWorkerId: number;
   private currentFlightId: string;
-  readonly duration: number = 60000;
+  readonly duration: number = 2000;
   constructor(private workerService: WorkerService) { }
 
   ngOnInit() {
@@ -27,7 +26,7 @@ export class WorkerDetailsComponent implements OnInit {
     // get all workers details
     this.workerService.getWorkerDetails()
       .pipe(
-        map(res => res),
+     
         catchError(err => {
           console.log(err);
           return of([]);
