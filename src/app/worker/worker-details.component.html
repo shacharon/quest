@@ -1,9 +1,15 @@
+<div class="header">
+    Welcome to workers flight information.<br>
+    You can click on each worker and you will see his scheduled flights.
+</div>
+
 <div class="container">
-    <div>
-        <div style="height: 40px;">
-            top
+    
+    <div style="border: 2px solid black;height: 50vh">
+        <div class="workers-header">
+            Workers
         </div>
-        <div *ngFor="let worker of workers">
+        <div *ngFor="let worker of workers" appHoverRow="worker-hover">
             <div class="worker" (click)="showFlights(worker.id,true)">{{worker.name}}</div>
         </div>
     </div>
@@ -18,7 +24,7 @@
             <div class="col">Destination</div>
             <div class="col">Destination Date</div>
         </div>
-            <div *ngFor="let flight of flights" >
+            <div *ngFor="let flight of flights">
                 <div class="row">
                     <div class="col" (click)="showFlightInformation(flight.num)">{{flight.num}}</div>
                     <div class="col">{{flight.from}}</div>

@@ -1,29 +1,50 @@
 .container {
     display: flex;
     justify-content: space-between;
-    max-width: 75%;;
-    margin : 0 auto;
+    max-width:54%;
+    margin: 0 auto;
 }
 
 .flights {
-    display: table;         
-    width: auto;         
-    background-color: #eee;         
-    border: 1px solid #666666;         
- 
-  }
-  .row {
+    display: table;
+    width: auto;
+    background-color: #eee;
+    border: 1px solid #666666;
+}
+.header {
+    margin: auto;
+    width: 50%;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+}
+.workers-header {
+    background-color: cyan;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    width:110px;
+}
+.row {
     display: table-row;
     width: auto;
     clear: both;
-  }
-  .col {
+}
+.col {
     float: left;
-    display: table-column;         
-    width: 160px;         
-    background-color: #ccc;  
-  }
-  .worker{
-     font-size: 1rem;
-     font-weight: bold;
-  }
+    display: table-column;
+    width: 160px;
+    background-color: #ccc;
+}
+.worker {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+.worker-hover {
+    background-color: lightslategrey;
+}

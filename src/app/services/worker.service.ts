@@ -16,14 +16,7 @@ export class WorkerService {
   
   
   constructor(private http: HttpClient) { 
-
-    this.flight.pipe(
-      debounceTime(800)).subscribe(res => {
-        if (res)
-          {
-
-          }
-      })
+ 
   }
 
   getWorkerDetails(): Observable<iWorker[]> {

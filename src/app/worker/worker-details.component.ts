@@ -16,8 +16,8 @@ export class WorkerDetailsComponent implements OnInit {
 
   public flight = new Subject<iFlightDetail>();
 
-  currentWorkerId :number;
-  currentFlightId : string;
+  private currentWorkerId :number;
+  private currentFlightId : string;
   constructor(private workerService: WorkerService) { }
 
   ngOnInit() {
@@ -39,12 +39,13 @@ export class WorkerDetailsComponent implements OnInit {
   // get workers all flights details
   showFlights(id) {
     this.currentWorkerId = id;
+    this.currentFlightId= null;
     this.workerService.getWorkerFlightsDetails(id).subscribe(res => {
-      this.currentFlightId =  this.currentFlightId  ?  this.currentFlightId : res[0].num;
+      //this.currentFlightId =  this.currentFlightId  ?  this.currentFlightId : res[0].num;
       this.flights = res;
       // check for null 
       if (res.length > 0)
-        this.showFlightInformation(this.currentFlightId);
+        this.showFlightInformation(res[0].num);
     });
   }
 

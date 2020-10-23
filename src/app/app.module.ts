@@ -7,10 +7,12 @@ import { WorkerDetailsComponent } from './worker/worker-details.component';
 import { WorkerService } from './services/worker.service';
  
 import { HttpClientModule } from '@angular/common/http';
+import { HoverRowDirective } from './directive/hover-row.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    WorkerDetailsComponent
+    WorkerDetailsComponent,
+    HoverRowDirective
   ],
   imports: [
     BrowserModule,
