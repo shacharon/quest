@@ -1,23 +1,21 @@
-
+.wrapper {
+ padding: 50px;
+}
 .container {
     display: flex;
-    max-width:70%;
-    margin: 0 auto;
+    margin: 30px;
 }
 
 .flights {
     display: table;
-    width: auto;
     background-color: #eee;
     border: 1px solid #666666;
 }
 .header {
-    margin: auto;
-    width: 50%;
+    max-width: 40%;
     border: 1px solid lightgrey;
     padding: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px;
     font-size: 1.4rem;
 }
 .workers-header {
@@ -25,7 +23,7 @@
     height: 60px;
     text-align: center;
     line-height: 60px;
-    width:110px;
+    width:150px;
 }
 .row {
     display: table-row;
@@ -41,8 +39,7 @@
 }
 .heading {
     margin-left: 10px;
-    line-height: 30px;
-    cursor: pointer;
+    line-height: 30px
 }
 .title {
     font-weight: bold;
@@ -71,10 +68,10 @@
 }
 .colum-wrapper {
     border: 1px solid black;
+    
 }
 .table-heading {
     padding: 20px;
-    height: 50vh;
 }
 .title + div
 {

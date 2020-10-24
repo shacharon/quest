@@ -1,55 +1,57 @@
-<div class="header">
-    Welcome to workers flight information.<br>
-    You can click on each worker and you will see his scheduled flights.
+<div class="wrapper">
+    <div class="header">
+        Welcome to workers flight information.<br>
+        You can click on each worker and you will see his scheduled flights.
+    </div>
+    
+    <div class="container">
+    
+        <div class="colum-wrapper">
+            <div class="workers-header">
+                Workers
+            </div>
+            <div *ngFor="let worker of workers" appHoverRow="line-hover">
+                <div class="heading title" (click)="getEmployeeFlights(worker.id)">{{worker.name}}</div>
+            </div>
+        </div>
+        <div class="colum-wrapper table-heading">
+            <div>
+                <div class="row table-header">
+                    <div class="col header-style">Flight Number</div>
+                    <div class="col header-style">Origin</div>
+                    <div class="col header-style">Origin Date</div>
+                    <div class="col header-style">Destination</div>
+                    <div class="col header-style">Destination Date</div>
+                </div>
+            </div>
+            <div *ngFor="let flight of flights">
+               <app-flights-detail [flight]="flight" (showFlightId)="showFlightInformation($event)"></app-flights-detail>
+            </div>
+    
+        </div>
+        <div class="colum-wrapper table-heading">
+            <div *ngIf="flight | async as flightDetails; else loading">
+                <div class="details header-style heading">
+                    <div class="title">Plane number</div>
+                    <div>{{flightDetails.plane}}</div>
+                </div>
+                <div class="details header-style heading">
+                    <div class="title">Duration</div>
+                    <div>{{flightDetails.duration | duration}}</div>
+                </div>
+                <div class="details header-style heading">
+                    <div class="title">Origin gate</div>
+                    <div>{{flightDetails.from_gate}}</div>
+                </div>
+                <div class="details header-style heading">
+                    <div class="title">Destination Gate</div>
+                    <div>{{flightDetails.to_gate}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <ng-template #loading>
+        <div>Flight details</div>
+    </ng-template>
 </div>
-
-<div class="container">
-
-    <div class="colum-wrapper">
-        <div class="workers-header">
-            Workers
-        </div>
-        <div *ngFor="let worker of workers" appHoverRow="line-hover">
-            <div class="heading title" (click)="getEmployeeFlights(worker.id)">{{worker.name}}</div>
-        </div>
-    </div>
-    <div class="colum-wrapper table-heading">
-        <div>
-            <div class="row table-header">
-                <div class="col header-style">Flight Number</div>
-                <div class="col header-style">Origin</div>
-                <div class="col header-style">Origin Date</div>
-                <div class="col header-style">Destination</div>
-                <div class="col header-style">Destination Date</div>
-            </div>
-        </div>
-        <div *ngFor="let flight of flights">
-           <app-flights-detail [flight]="flight" (showFlightId)="showFlightInformation($event)"></app-flights-detail>
-        </div>
-
-    </div>
-    <div class="colum-wrapper table-heading">
-        <div *ngIf="flight | async as flightDetails; else loading">
-            <div class="details header-style heading">
-                <div class="title">Plane number</div>
-                <div>{{flightDetails.plane}}</div>
-            </div>
-            <div class="details header-style heading">
-                <div class="title">Duration</div>
-                <div>{{flightDetails.duration | duration}}</div>
-            </div>
-            <div class="details header-style heading">
-                <div class="title">Origin gate</div>
-                <div>{{flightDetails.from_gate}}</div>
-            </div>
-            <div class="details header-style heading">
-                <div class="title">Destination Gate</div>
-                <div>{{flightDetails.to_gate}}</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<ng-template #loading>
-    <div>Flight details</div>
-</ng-template>
